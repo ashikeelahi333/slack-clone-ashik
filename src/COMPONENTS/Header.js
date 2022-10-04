@@ -20,7 +20,7 @@ const Header = () => {
         <UserName>Ashik</UserName>
         <UserImage>
           <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTnEMahBE40-bnCn8PsLXr_flN0B-KyvlzV3dcswdUt0W-C0QBh5_mCLMSDBbVqFBjqbOQ&usqp=CAU"
+            src="https://randomuser.me/api/portraits/men/85.jpg"
             alt=""
           />
         </UserImage>
@@ -87,7 +87,7 @@ const UserName = styled.div`
 const UserImage = styled.div`
   width: 26px;
   height: 26px;
-  border-radius: 3px;
+  border-radius: 50%;
   border: 2px solid white;
   overflow: hidden;
   padding: 0;

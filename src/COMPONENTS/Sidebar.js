@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 import { sidebarItemsData } from "./data/SidebarData.js";
-import { ChannelsData } from './data/ChannelsData';
+import { db } from '../firebase';
 
-
-const Sidebar = () => {
+const Sidebar = (props) => {
+  const addChannel = () => {
+    const promptName = prompt("Enter chanel name");
+    if(promptName) {
+      db.collection('rooms').add({
+        name: promptName
+      })
+    }
+  };
   return (
     <Container>
       <WorkspaceContainer>
@@ -26,16 +33,14 @@ const Sidebar = () => {
       <ChannelsContainer>
         <NewChannelContainer>
           <div>Channels</div>
-          <AddIcon />
+          <span>
+            <AddIcon onClick={addChannel} />
+          </span>
         </NewChannelContainer>
         <ChannelsList>
-          {
-            ChannelsData.map((ChannelData) => (
-              <Channel>
-                # {ChannelData.name}
-              </Channel>
-            ))
-          }
+          {props.rooms.map((room) => (
+            <Channel># {room.name}</Channel>
+          ))}
         </ChannelsList>
       </ChannelsContainer>
     </Container>
@@ -86,33 +91,35 @@ const MainChannelItems = styled.div`
   cursor: pointer;
 
   :hover {
-    background: #350D36;
+    background: #350d36;
   }
 `;
 
 const ChannelsContainer = styled.div`
   color: rgb(188, 171, 188);
   margin-top: 10px;
-`
+`;
 const NewChannelContainer = styled.div`
   display: flex;
   justify-content: space-between;
   height: 28px;
   padding-left: 19px;
   padding-right: 19px;
-`
 
-const ChannelsList = styled.div`
+  span {
+    cursor: pointer;
+  }
+`;
 
-`
+const ChannelsList = styled.div``;
 
 const Channel = styled.div`
-height: 28px;
-display: flex;
-align-items: center;
-padding-left: 19px;
-cursor: pointer;
-:hover {
-  background: #350D36;
-}
-`
+  height: 28px;
+  display: flex;
+  align-items: center;
+  padding-left: 19px;
+  cursor: pointer;
+  :hover {
+    background: #350d36;
+  }
+`;
