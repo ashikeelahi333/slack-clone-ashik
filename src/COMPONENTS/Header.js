@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 
-const Header = () => {
+const Header = ({user, signOut}) => {
   return (
     <Container>
       <Main>
@@ -17,10 +17,10 @@ const Header = () => {
         <HelpOutlineIcon />
       </Main>
       <UserContainer>
-        <UserName>Ashik</UserName>
-        <UserImage>
+        <UserName>{user.name}</UserName>
+        <UserImage onClick={signOut}>
           <img
-            src="https://randomuser.me/api/portraits/men/85.jpg"
+            src={user.photo ? user.photo : "https://randomuser.me/api/portraits/men/85.jpg"}
             alt=""
           />
         </UserImage>
@@ -87,10 +87,11 @@ const UserName = styled.div`
 const UserImage = styled.div`
   width: 26px;
   height: 26px;
-  border-radius: 50%;
-  border: 2px solid white;
+  border-radius: 4px;
   overflow: hidden;
   padding: 0;
+  cursor: pointer;
+  background: red;
 
   img {
     width: 100%;
