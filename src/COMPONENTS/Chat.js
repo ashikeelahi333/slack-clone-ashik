@@ -6,10 +6,10 @@ import ChatMessage from "./ChatMessage";
 import { db } from "../firebase";
 import { useParams } from "react-router-dom";
 import firebase from "firebase/compat/app";
-import 'firebase/compat/auth';
+import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-const Chat = ({user}) => {
+const Chat = ({ user }) => {
   let { channelId } = useParams();
   const [channel, setChannel] = useState();
   const [messages, setMessages] = useState();
@@ -66,6 +66,7 @@ const Chat = ({user}) => {
         {messages &&
           messages.length > 0 &&
           messages.map((data, index) => (
+            
             <ChatMessage
               text={data.text}
               name={data.user}
@@ -103,6 +104,7 @@ const ChannelInfo = styled.div`
 const Container = styled.div`
   display: grid;
   grid-template-rows: 64px auto min-content;
+  min-height: 0;
 `;
 
 const Info = styled(InfoOutlinedIcon)`
@@ -118,4 +120,8 @@ const Header = styled.div`
   border-bottom: 1px solid rgba(83, 39, 83, 0.13);
 `;
 
-const MessageContainer = styled.div``;
+const MessageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+`;

@@ -10,6 +10,7 @@ const ChatInput = ({sendMessage}) => {
     e.preventDefault();
     if(!input) return;
     sendMessage(input);
+    setInput("")
   }
   return (
     <Container>
@@ -17,7 +18,9 @@ const ChatInput = ({sendMessage}) => {
       <form action="">
         <input
         onChange={(e) => setInput(e.target.value)}
-        type="text" placeholder='Message here...' />
+        type="text" 
+        value={input}
+        placeholder='Message here...' />
         <SendButton 
         type='submit'
         onClick={send}>

@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-const ChatMessage = ({text, name, Image, timestamp}) => {
+const ChatMessage = ({text, name, image, timestamp}) => {
+
 
   return (
     <Container>
       <UserAvatar>
-        <img src={Image} alt="" />
+        <img src={image} alt="" />
       </UserAvatar>
       <MessageContent>
         <Name>{name}
